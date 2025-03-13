@@ -45,7 +45,7 @@ export default function AddTarefas({ addTodo, editingTodo, editingIndex }) {
       />
       <button class="bg-green-800 text-white py-2 px-6 mr-2 rounded cursor-pointer opacity-80 transition-opacity duration-300 hover:opacity-100"
         onClick={handleAddTodo} className='w-full bg-slate-800 text-white py-2 px-4 cursor-pointer  rounded  hover:bg-slate-600'>
-        {editingIndex !== null ? 'Editar Tarefa' : 'Adicionar Tarefa'}
+        {editingIndex !== null ? 'Salvar Edição' : 'Adicionar Tarefa'}
       </button>
     </div>
   )
