@@ -20,11 +20,11 @@ export default function App() {
     createTodo(newTodo);
   };
 
-  // Função para excluir tarefas
+  //  Função para excluir tarefas
   const handleDeleteTodo = (index) => {
     const updatedTodos = todos.filter((_, i) => i !== index);
+    deleteTodo(index);
     setTodos(updatedTodos);
-    deleteTodo(todos[index].id);
   };
 
   // Função para editar tarefas (preenche o formulário com os dados da tarefa)

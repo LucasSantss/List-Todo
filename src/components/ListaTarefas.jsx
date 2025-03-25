@@ -31,11 +31,11 @@ export default function ListaTarefas({ todos, handleEditTodo, handleDeleteTodo, 
           <div key={todo.id} className='mb-2 p-4 border rounded-lg shadow'>
             <h3 className={`text-xl font-semibold ${todo.isCompleted ? 'line-through' : ''}`}>{todo.title}</h3>
             <p className={`text-lg ${todo.isCompleted ? 'line-through' : ''}`}>{todo.task}</p>
-            <p className='text-sm text-gray-400'>Due: {format(new Date(todo.dueDate), 'PPP')}</p>
+            <p className='text-sm text-gray-400'>Due: {format(new Date(todo.due_date), 'PPP')}</p>
 
-            <ConcluirTarefas handleToggleComplete={handleToggleComplete} isCompleted={todo.isCompleted} index={index} />
-            <EditarTarefas handleEditTodo={handleEditTodo} index={index} />
-            <ExcluirTarefas handleDeleteTodo={handleDeleteTodo} index={index} />
+            <ConcluirTarefas handleToggleComplete={handleToggleComplete} isCompleted={todo.isCompleted} index={todo.id} />
+            <EditarTarefas handleEditTodo={handleEditTodo} index={todo.id} />
+            <ExcluirTarefas handleDeleteTodo={handleDeleteTodo} index={todo.id} />
           </div>
         ))
       ) : (

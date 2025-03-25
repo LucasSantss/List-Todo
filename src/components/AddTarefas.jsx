@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getLastTodos } from '../services/TodoServices';
 
 export default function AddTarefas({ addTodo, editingTodo, editingIndex }) {
-  const [newTodo, setNewTodo] = useState({ title: '', task: '', dueDate: '', isCompleted: false, id: '' });
+  const [newTodo, setNewTodo] = useState({ title: '', task: '', dueDate: '', isCompleted: false });
 
   // Preenche o formulário com os dados da tarefa ao editar
   useEffect(() => {
@@ -11,7 +10,6 @@ export default function AddTarefas({ addTodo, editingTodo, editingIndex }) {
     }
   }, [editingTodo]);
 
-  const ultimoId = getLastTodos();
 
   const handleAddTodo = async () => {
     if (!newTodo.task || !newTodo.dueDate || !newTodo.title) return;
@@ -19,12 +17,9 @@ export default function AddTarefas({ addTodo, editingTodo, editingIndex }) {
     // Verifica se é uma nova tarefa ou uma edição
 
     addTodo(newTodo, editingIndex);
-    setNewTodo({ title: '', task: '', dueDate: '', isCompleted: false, id: '' });
-
-    newTodo.id = ultimoId;
-
+    setNewTodo({ title: '', task: '', dueDate: '', isCompleted: false });
     // Envia os dados para o servidor aqui
-    console.log(newTodo);
+    //console.log(newTodo);
   };
   return (
     <div className='p-4 mb-4 border rounded-lg shadow'>
