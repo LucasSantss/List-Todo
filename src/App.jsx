@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddTarefas from './components/AddTarefas';
 import ListaTarefas from './components/ListaTarefas';
 import Search from './components/Search';
+import { createTodo, deleteTodo, updateTodo } from './services/TodoServices';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -16,25 +17,29 @@ export default function App() {
     setTodos(updatedTodos);
     setEditingTodo(null);
     setEditingIndex(null);
+    createTodo(newTodo);
   };
 
   // Função para excluir tarefas
   const handleDeleteTodo = (index) => {
     const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
+    deleteTodo(todos[index].id);
   };
 
   // Função para editar tarefas (preenche o formulário com os dados da tarefa)
   const handleEditTodo = (index) => {
     setEditingTodo(todos[index]);
     setEditingIndex(index);
+    updateTodo(index);
   };
 
   // Função para concluir ou reverter a conclusão da tarefa
   const handleToggleComplete = (index) => {
-    const updatedTodos = [...todos];
-    updatedTodos[index].isCompleted = !updatedTodos[index].isCompleted;
-    setTodos(updatedTodos);
+    const updatedTodo = [...todos];
+    updatedTodo[index].isCompleted = !updatedTodo[index].isCompleted;
+    setTodos(updatedTodo);
+    updateTodo(index);
   };
 
   return (

@@ -8,3 +8,4 @@ export default function ExcluirTarefas({ handleDeleteTodo, index }) {
     </button>
   );
 }
+

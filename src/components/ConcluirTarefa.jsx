@@ -8,5 +8,8 @@ export default function ConcluirTarefas({ handleToggleComplete, isCompleted, ind
     >
       {isCompleted ? 'Reverter' : 'Concluir'}
     </button>
+
   );
 }
+
+

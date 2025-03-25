@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTodos } from '../services';  // Importa o serviço criado acima
+import { getTodos } from '../../src/services/TodoServices';  // Importa o serviço criado acima
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
