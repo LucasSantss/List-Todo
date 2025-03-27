@@ -3,6 +3,7 @@ import AddTarefas from './components/AddTarefas';
 import ListaTarefas from './components/ListaTarefas';
 import Search from './components/Search';
 import { createTodo, deleteTodo, getTodos, updateTodo } from './services/TodoServices';
+console.log(getTodos());
 
 export default function App() {
   const [todos, setTodos] = useState([getTodos()]);
@@ -41,14 +42,11 @@ export default function App() {
 
   // Função para concluir ou reverter a conclusão da tarefa
   const handleToggleComplete = (index) => {
-    console.log(index.due_date);
     const updatedTodos = (index);
     updatedTodos.is_completed = !updatedTodos.is_completed;
     setTodos(updatedTodos);
     updateTodo(index.id, index);
   };
-
-
 
   return (
     <div class="max-w-400 mx-auto mb-[300px] bg-indigo-200 p-5 rounded-xl">

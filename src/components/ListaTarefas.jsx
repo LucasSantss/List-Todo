@@ -4,7 +4,6 @@ import EditarTarefas from './EditarTarefas';
 import ExcluirTarefas from './ExcluirTarefas';
 import ConcluirTarefas from './ConcluirTarefa';
 import { getTodos } from '../services/TodoServices';
-console.log(getTodos());
 
 export default function ListaTarefas({ todos, handleEditTodo, handleDeleteTodo, handleToggleComplete, search }) {
   // Filtrar tarefas com base no título

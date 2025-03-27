@@ -14,7 +14,6 @@ const postId = 1;
 export const getTodos = async () => {
   try {
     const posts = await sql('SELECT * FROM todos ORDER BY ID DESC');
-    //console.log(posts);
     return posts;
   } catch (error) {
     console.error('Erro ao buscar as tarefas:', error);
