@@ -4,6 +4,7 @@ import EditarTarefas from './EditarTarefas';
 import ExcluirTarefas from './ExcluirTarefas';
 import ConcluirTarefas from './ConcluirTarefa';
 import { getTodos } from '../services/TodoServices';
+console.log(getTodos());
 
 export default function ListaTarefas({ todos, handleEditTodo, handleDeleteTodo, handleToggleComplete, search }) {
   // Filtrar tarefas com base no título
@@ -29,12 +30,12 @@ export default function ListaTarefas({ todos, handleEditTodo, handleDeleteTodo, 
       {filteredTodos.length > 0 ? (
         filterTodos.map((todo, index) => (
           <div key={todo.id} className='mb-2 p-4 border rounded-lg shadow'>
-            <h3 className={`text-xl font-semibold ${todo.isCompleted ? 'line-through' : ''}`}>{todo.title}</h3>
-            <p className={`text-lg ${todo.isCompleted ? 'line-through' : ''}`}>{todo.task}</p>
-            <p className='text-sm text-gray-400'>Due: {format(new Date(todo.due_date), 'PPP')}</p>
+            <h3 className={`text-xl font-semibold ${todo.is_completed ? 'line-through' : ''}`}>{todo.title}</h3>
+            <p className={`text-lg ${todo.is_completed ? 'line-through' : ''}`}>{todo.task}</p>
+            <p className='text-sm text-gray-400'>Data: {format(new Date(todo.due_date), 'PPP')}</p>
 
-            <ConcluirTarefas handleToggleComplete={handleToggleComplete} isCompleted={todo.isCompleted} index={todo.id} />
-            <EditarTarefas handleEditTodo={handleEditTodo} index={todo.id} />
+            <ConcluirTarefas handleToggleComplete={handleToggleComplete} is_completed={todo.is_completed} index={todo} />
+            <EditarTarefas handleEditTodo={handleEditTodo} index={todo} />
             <ExcluirTarefas handleDeleteTodo={handleDeleteTodo} index={todo.id} />
           </div>
         ))

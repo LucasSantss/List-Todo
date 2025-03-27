@@ -2,22 +2,28 @@ import React, { useState } from 'react';
 import AddTarefas from './components/AddTarefas';
 import ListaTarefas from './components/ListaTarefas';
 import Search from './components/Search';
-import { createTodo, deleteTodo, updateTodo } from './services/TodoServices';
+import { createTodo, deleteTodo, getTodos, updateTodo } from './services/TodoServices';
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([getTodos()]);
   const [editingTodo, setEditingTodo] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
   const [search, setSearch] = useState('');
 
   // Função para adicionar ou editar tarefas
   const addTodo = (newTodo, index) => {
-    const updatedTodos = index !== null ? [...todos] : [...todos, newTodo];
-    if (index !== null) updatedTodos[index] = newTodo; // Atualiza a tarefa editada
+    const updatedTodos = [...todos]
+    if (index !== null && index !== undefined) {
+      updatedTodos[index] = newTodo
+      setEditingIndex(newTodo); // Atualiza a tarefa existente
+      updateTodo(newTodo.id, newTodo);
+    } else {
+      updatedTodos.push(newTodo)
+      createTodo(newTodo); // Chama apenas ao adicionar nova tarefa
+    }; // Atualiza a tarefa editada
     setTodos(updatedTodos);
     setEditingTodo(null);
     setEditingIndex(null);
-    createTodo(newTodo);
   };
 
   //  Função para excluir tarefas
@@ -27,20 +33,22 @@ export default function App() {
     setTodos(updatedTodos);
   };
 
-  // Função para editar tarefas (preenche o formulário com os dados da tarefa)
+  // Função para editar tarefas 
   const handleEditTodo = (index) => {
-    setEditingTodo(todos[index]);
     setEditingIndex(index);
-    updateTodo(index);
+    setEditingTodo(index)
   };
 
   // Função para concluir ou reverter a conclusão da tarefa
   const handleToggleComplete = (index) => {
-    const updatedTodo = [...todos];
-    updatedTodo[index].isCompleted = !updatedTodo[index].isCompleted;
-    setTodos(updatedTodo);
-    updateTodo(index);
+    console.log(index.due_date);
+    const updatedTodos = (index);
+    updatedTodos.is_completed = !updatedTodos.is_completed;
+    setTodos(updatedTodos);
+    updateTodo(index.id, index);
   };
+
+
 
   return (
     <div class="max-w-400 mx-auto mb-[300px] bg-indigo-200 p-5 rounded-xl">

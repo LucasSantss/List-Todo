@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateTodo } from '../services/TodoServices';
 
 export default function EditarTarefas({ handleEditTodo, index }) {
   return (
